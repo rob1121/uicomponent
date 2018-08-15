@@ -1,0 +1,35 @@
+<?php
+
+  /**
+   * @var Nineteen02\UiComponent\ViewModel\CmsPagesList $viewModel
+   * @var Magento\Framework\View\Element\Template $block
+   */
+
+  $viewModel = $block->getData('viewModel');
+?>
+
+<div data-bind="scope: 'nineteen02-uicomponent'">
+  <h2 data-bind="text: title"></h2>
+  <ul>
+    <!--ko foreach: {data: getItems(), as: 'page'} -->
+      <li><a data-bind="attr:{href: page.url}, text: page.title"></a></li>
+    <!--/ko-->
+  </ul>
+</div>
+
+
+<script type="text/x-magento-init">
+{
+  "*": {
+    "Magento_Ui/js/core/app": {
+      "components": {
+        "nineteen02-uicomponent": {
+          "component": "Nineteen02_UiComponent/js/component",
+          "title": "Hello World!",
+          "items": <?= $viewModel->getItemsJson(); ?>
+        }
+      }
+    }
+  }
+}
+</script>
